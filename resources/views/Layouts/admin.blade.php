@@ -97,13 +97,15 @@
                         <li><a href="{{url('admin/books')}}">图书列表</a></li>
                     </ul>
                 </li>
-               <!--  <li>
-                    <a href="javascript:;" ><i class="fa fa-th-large"></i> <span class="nav-label">友情链接设置</span> <span class="fa arrow"></span></a>
+                <li>
+                    <a href="javascript:;" ><i class="fa fa-th-large"></i> <span class="nav-label">广告管理</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{url('admin/links')}}">友情链接列表</a></li>
-                        <li><a href="{{url('admin/links/create')}}">添加友情链接</a></li>
+                        <li><a href="{{url('admin/adv')}}">广告列表</a></li>
+                        <li><a href="{{url('admin/adv/create')}}">添加广告</a></li>
+
+                        
                     </ul>
-                </li> -->
+                </li>
                 <!-- 帖子管理 -->
          <!--        <li>
                     <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">帖子管理</span> <span class="fa arrow"></span></a>
