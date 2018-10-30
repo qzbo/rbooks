@@ -6,7 +6,8 @@
     <div class="ibox float-e-margins">
         <div class="ibox-content">
             <div id="editable_wrapper" class="dataTables_wrapper form-inline">
-                <form action="{{url('/admin/books')}}" method="get">
+
+                <form action="{{url('/admin/adv')}}" method="get">
                     <div class="row">
                         
                         <div class="col-md-3">
@@ -44,12 +45,10 @@
                         <div class="col-sm-6">
                             <div id="editable_filter" class="dataTables_filter">
                                 <label>
-                                    搜索：<input type="search" class="form-control input-sm" name="books" value="{{ !empty($_GET['books']) ? $_GET['books'] : '' }}" placeholder="输入书籍名称">
+                                    搜索：<input type="search" class="form-control input-sm" name="name" value="{{ !empty($_GET['name']) ? $_GET['name'] : '' }}" placeholder="输入广告名称">
 
                                 </label>
-                                <input type="search" class="form-control input-sm" name="author" value="{{ !empty($_GET['author']) ? $_GET['author'] : '' }}" placeholder="输入作者姓名">
-                                <!-- <input type="submit" value="提交"> -->
-                                <!-- <div class="col-md-">   -->
+                              
                                 <input type="submit" class="btn btn-primary btn-sm" value="查询">
 
                                 <!-- </div> -->
@@ -72,16 +71,11 @@
                     <tr role="row">
                         <!-- <th></th> -->
                         <th class="sorting_asc" style="width: 70px;">ID号</th>
-                        <th class="sorting_asc"  style="width: 253px;">书籍名称</th>
-                        <!-- <th class="sorting_asc"  style="width: 253px;">所属栏目</th> -->
-                        <th class="sorting_asc"  style="width:180;">封面图片</th>
-                        <th class="sorting_asc" style="width: 80px;">作者</th>
-                        <th class="sorting_asc" style="width: 229px;">出版社</th>
-                        <!-- <th class="sorting_asc"  style="width: 175px;">简介</th> -->
-
-                        <th class="sorting_asc" style="width: 120px;">VIP|免费</th>
-                        <th class="sorting_asc"  style="width: 175px;">推荐</th>
-
+                        <th class="sorting_asc"  style="width: 253px;">广告标题</th>
+                        <th class="sorting_asc"  style="width:180;">URL</th>
+                        <th class="sorting_asc" style="width: 80px;">是否启用</th>
+                        <th class="sorting_asc" style="width: 229px;">图片展示</th>
+                        <th class="sorting_asc" style="width: 120px;">广告类型</th>
                         <th class="sorting_asc"  style="width: 175px;">添加时间</th>
                         <th class="sorting_asc"  style="width: 175px;">操作</th>
                     </tr>
@@ -90,42 +84,28 @@
                         
                 @foreach($res as $k=>$v)
                     <tr class="gradeA odd" role="row">
-                        <!-- <label>
-                        <td>
-                            <input type="checkbox" name=""></td>
-                        </label> -->
+                     
                         <td class="sorting_1">{{$v->id}}</td>
-                        <td>{{$v->booksname}}</td>
-                        <!-- <td>{{$v->category_id}}</td> -->
-                        <td class="center">
-                          
-                                
-                        <img style="width: 120px;height: 150px" src="http://182.61.25.211:8080/manager_epub/Images/{{$v->bimg}}"></td>
-                        
-                         <td>{{$v->author}}</td>
-                         <td>{{$v->publishing}}</td>
+                        <td>{{$v->name}}</td>
+                         <td>{{$v->url}}</td>
+                         <td>{{$sta[$v->status]}}</td>
+                         <td class="center">
+                           
+                        <img style="width: 120px;height: 150px" src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$v->image;?>"></td>
 
-                         <!-- <td>{{$v->synopsis}}</td> -->
+                        <td>{{$isvia[$v->isvi]}}</td>
 
-
-                         <td>{{$isvip[$v->isvip]}}</td>
-
-                         <td>{{$isrecommend[$v->isrecommend]}}</td>
-                         <td>{{$v->createtime}}</td>
+                         <td><?php echo date("Y-m-d H:i:s",$v->ctime)?> </td>
                          
                         <td class="center">
-                          @if($v->isvip == 2)
-                            <a href="javascript:void(0);" class="btn btn-success btn-sm" onclick="fvip({{$v->id}})">免费</a>
+                          @if($v->status == 1)
+                            <a href="javascript:void(0);" class="btn btn-success btn-sm" onclick=" disable({{$v->id}})">禁用</a>
                         @else 
-                            <a href="javascript:void(0);" onclick="vip({{$v->id}})" class="btn btn-success btn-sm">VIP</a>
+                            <a href="javascript:void(0);" onclick="Enable({{$v->id}})" class="btn btn-success btn-sm">启用</a>
                         @endif
 
-                        @if($v->isrecommend == 1)
-                            <a href="javascript:void(0);" class="btn btn-success btn-sm" onclick="frecommend({{$v->id}})">不推荐</a>
-                        @else 
-                            <a href="javascript:void(0);" onclick="recommend({{$v->id}})" class="btn btn-success btn-sm">推荐</a>
-                        @endif
-                        <a href="/rbooks/public/admin/books/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
+                        
+                        <a href="admin/adv/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
 
                         <a href="javascript:;" class="btn btn-danger btn-sm" onclick="deladmin('{{$v->id}}')">删除</a>
                        </td>
@@ -138,7 +118,7 @@
                     </tbody>
                 </table>
                 <div>
-                     {!! $res->appends(['booksname'=>$input,'pages'=>$num])->render()!!}
+                     {!! $res->appends(['name'=>$input,'pages'=>$num])->render()!!}
                 </div>
             </div>
         </div>
@@ -146,18 +126,18 @@
             // 删除书籍
             function deladmin(id){
                 //询问框
-                layer.confirm('确认删除这本书籍吗？', {
+                layer.confirm('确认删除？', {
                     btn: ['确认','取消']
                 }, function(){
 //                通过ajax 向服务器发送一个删除请求
-                    $.post("{{url('admin/books/')}}/"+id,{'_method':'delete','_token':"{{csrf_token()}}"},function(data){
+                    $.post("{{url('admin/adv/')}}/"+id,{'_method':'delete','_token':"{{csrf_token()}}"},function(data){
                       
                         if(data.status == 0){
 //                            location.href = location.href;
                             layer.msg(data.msg, {icon: 6});
                             setTimeout(function(){
                                 location.href = location.href;
-                            },3000)
+                            },2000)
                         }else{
 
                             layer.msg(data.msg, {icon: 5});
@@ -170,12 +150,12 @@
 
 
 
-             // 修改VIP状态 改为是VIP
-        function vip(id){
-            layer.confirm('确认修改为VIP书籍？', {
+             // 修改为禁用
+        function disable(id){
+            layer.confirm('确认禁用？', {
                             btn: ['确认','取消'] //按钮
                         }, function(){
-                            $.post("{{url('admin/books/vip')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
+                            $.post("{{url('admin/adv/disable')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
                                 console.log(data);
                                 if(data.status == 0){
                                     location.href = location.href;
@@ -189,48 +169,12 @@
 
         }
 
-     // 修改VIP状态 改为不是VIP
-        function fvip(id){
-            layer.confirm('确认修改为免费书籍？？', {
+     // 修改为启用
+        function Enable(id){
+            layer.confirm('确认启用？？', {
                             btn: ['确认','取消'] //按钮
                         }, function(){
-                            $.post("{{url('admin/books/fvip')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
-                                if(data.status == 0){
-                                    location.href = location.href;
-                                    layer.msg(data.msg, {icon: 6});
-                                }else{
-                                    location.href = location.href;
-                                    layer.msg(data.msg, {icon: 5});
-                                }
-                            })
-                        });
-
-        }
-
-             // 修改推荐状态 改为推荐
-        function recommend(id){
-            layer.confirm('确认推荐？', {
-                            btn: ['确认','取消'] //按钮
-                        }, function(){
-                            $.post("{{url('admin/books/recommend')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
-                                if(data.status == 0){
-                                    location.href = location.href;
-                                    layer.msg(data.msg, {icon: 6});
-                                }else{
-                                    location.href = location.href;
-                                    layer.msg(data.msg, {icon: 5});
-                                }
-                            })
-                        });
-
-        }
-
-             // 修改推荐状态 改为不推荐
-        function frecommend(id){
-            layer.confirm('确认不推荐？', {
-                            btn: ['确认','取消'] //按钮
-                        }, function(){
-                            $.post("{{url('admin/books/frecommend')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
+                            $.post("{{url('admin/adv/Enable')}}"+'/'+id,{'_token':'{{csrf_token()}}'},function(data){
                                 if(data.status == 0){
                                     location.href = location.href;
                                     layer.msg(data.msg, {icon: 6});

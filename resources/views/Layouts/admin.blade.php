@@ -95,13 +95,15 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{url('admin/bclassify')}}">图书分类</a></li>
                         <li><a href="{{url('admin/books')}}">图书列表</a></li>
+                        <li><a href="{{url('admin/parsing')}}">图书解析</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript:;" ><i class="fa fa-th-large"></i> <span class="nav-label">广告管理</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{url('admin/adv')}}">广告列表</a></li>
-                        <li><a href="{{url('admin/adv/create')}}">添加广告</a></li>
+                        <li><a href="{{url('admin/adv/create')}}">添加图片广告</a></li>
+                        <li><a href="{{url('admin/adv/createvid')}}">添加视频广告</a></li>
 
                         
                     </ul>

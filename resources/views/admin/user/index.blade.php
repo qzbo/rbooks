@@ -85,7 +85,7 @@
                         <td>{{$sex[$v->sex]}}</td>
                         <td class="center">{{$v->age}}</td>
                         <td class="center">
-                            <a href="/rbooks/public/admin/user/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
+                            <a href="/admin/user/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
 
                             <a href="javascript:;" class="btn btn-danger btn-sm" onclick="deladmin('{{$v->id}}')">删除</a>
                         </td>

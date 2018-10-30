@@ -49,7 +49,7 @@
             <div class="form-group"><label class="col-sm-2 control-label">性　　别:</label>
                 <div class="col-sm-3">
                     <label><input type="radio" checked="" id="optionsRadios1" name="sex" value="1">男</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label> <input type="radio" id="optionsRadios2" name="sex" value="0s">女</label>
+                    <label> <input type="radio" id="optionsRadios2" name="sex" value="0">女</label>
                 </div>
             </div>
            <div class="hr-line-dashed"></div>

@@ -11,6 +11,10 @@
 |
 */
 Route::get('/', function () {
+    
+    // echo phpinfo();die;
+
+
     return view('welcome');
 
 
@@ -22,27 +26,30 @@ Route::get('admin/login','Admin\LoginController@login');
 Route::post('/admin/dologin','Admin\LoginController@dologin');
 //后台验证码显示
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
-
-Route::group(['middleware'=>'login','prefix'=>'admin','namespace'=>'Admin'],function(){
+// 'middleware'=>'login',
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
 
 	// 后台用户管理
 	Route::resource('/user','UserController');
 	//检查用户名 邮箱是否存在
 	Route::post('/checkuser','UserController@checkuser');
-
-    //管理员修改密码
+    // 管理员修改密码
     Route::get('/repass','UserController@repass');
     Route::post('/dorepass/{id}','UserController@dorepass');
-    //管理员退出登录
+    // 管理员退出登录
     Route::post('/loginout','LoginController@loginOut');
-    //管理员修改密码
+    // 管理员修改密码
     Route::get('/repass','UserController@repass');
     Route::post('/dorepass/{id}','UserController@dorepass');
-    //图书分类管理
+
+
+    // 图书分类管理
     Route::resource('/bclassify','BclassifyController');
-    //图书列表
-    Route::resource('/books','BooksController');    
+    // 图书列表
+    Route::resource('/books','BooksController');
+    //引入解析上传文件    
+    Route::get('/parsing','ParsingController@index');
     // 修改VIP状态为是VIP
     Route::post('/books/vip/{id}','BooksController@vip');
     // 修改VIP状态为是VIP
@@ -52,10 +59,18 @@ Route::group(['middleware'=>'login','prefix'=>'admin','namespace'=>'Admin'],func
     // 修改推荐状态为不推荐
     Route::post('/books/frecommend/{id}','BooksController@frecommend');
 
+    // 广告管理
+    Route::resource('/adv','AdvController');
+    // 修改广告状态为禁用
+    Route::post('/adv/disable/{id}','AdvController@disable');
+    // 修改广告状态为启用
+    Route::post('/adv/Enable/{id}','AdvController@Enable');
+
+
 
 });
 
-//后台登录页
+//前台测试接口展示 
 Route::get('home/index','Home\IndexController@index');
 
 
