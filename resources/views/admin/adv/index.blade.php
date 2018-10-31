@@ -74,7 +74,7 @@
                         <th class="sorting_asc"  style="width: 253px;">广告标题</th>
                         <th class="sorting_asc"  style="width:180;">URL</th>
                         <th class="sorting_asc" style="width: 80px;">是否启用</th>
-                        <th class="sorting_asc" style="width: 229px;">图片展示</th>
+                        <th class="sorting_asc" style="width: 229px;">图片|视频</th>
                         <th class="sorting_asc" style="width: 120px;">广告类型</th>
                         <th class="sorting_asc"  style="width: 175px;">添加时间</th>
                         <th class="sorting_asc"  style="width: 175px;">操作</th>
@@ -89,9 +89,19 @@
                         <td>{{$v->name}}</td>
                          <td>{{$v->url}}</td>
                          <td>{{$sta[$v->status]}}</td>
+                         
+
+
+
+                    @if($v->isvi == 1)
                          <td class="center">
-                           
                         <img style="width: 120px;height: 150px" src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$v->image;?>"></td>
+                        @else 
+                         <td class="center">
+                          <video src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$v->video;?>"   controls="controls" width="200" height="100">
+                            </video>
+                    </td>
+                        @endif
 
                         <td>{{$isvia[$v->isvi]}}</td>
 
@@ -103,11 +113,19 @@
                         @else 
                             <a href="javascript:void(0);" onclick="Enable({{$v->id}})" class="btn btn-success btn-sm">启用</a>
                         @endif
-
+              @if($v->isvi == 1)
+                          <a href="/admin/adv/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
+                             <a href="javascript:;" class="btn btn-danger btn-sm" onclick="deladmin('{{$v->id}}')">删除</a>
+                        @else 
+                        <a href="/admin/advvid/update/{{$v->id}}" class="btn btn-success btn-sm">修改</a>
+                           <a href="javascript:;" class="btn btn-danger btn-sm" onclick="deladmin('{{$v->id}}')">删除</a>
+                    </td>
+                        @endif
                         
-                        <a href="admin/adv/{{$v->id}}/edit" class="btn btn-success btn-sm">修改</a>
+                      
 
-                        <a href="javascript:;" class="btn btn-danger btn-sm" onclick="deladmin('{{$v->id}}')">删除</a>
+
+                     
                        </td>
                     </tr>
                 @endforeach

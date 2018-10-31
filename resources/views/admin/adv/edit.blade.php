@@ -1,11 +1,12 @@
 @extends('Layouts.admin')
-@section("title","后台管理 | 书籍修改")
+@section("title","后台管理 | 管理员添加")
 @section('content')
     <style>
         .form-horizontal{
             margin-top:20px;
         }
     </style>
+
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -19,120 +20,85 @@
             </ul>
         </div>
     @endif
+
     <div class="ibox-content">
-        <form method="post" class="form-horizontal" action="{{url('admin/books/'.$books->id)}}"  enctype="multipart/form-data">
+
+        <form method="post" class="form-horizontal" action="{{url('admin/adv/'.$res->id)}}" enctype="multipart/form-data">
             {{csrf_field()}}
-            {{method_field('PUT')}}
-           
-            <div class="form-group"><label class="col-sm-2 control-label" >书籍名称:</label>
+             {{method_field('PUT')}}
 
-                <div class="col-sm-3"><input type="text" class="form-control" value="{{$books->booksname}}" name="booksname"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">标题名称:</label>
+
+                <div class="col-sm-3"><input type="text" class="form-control" name="name" value="{{$res->name}}"></div>
             </div>
             <div class="hr-line-dashed"></div>
-
-            <div class="form-group"><label class="col-sm-2 control-label">封面图片:</label>
-
-                <div class="col-sm-3"><input type="file" name="bimg" disabled="disabled" class="form-control"  value="{{$books->bimg}}">
-                    <div style="width: 120px;height: 150px">
-                        <img src="http://182.61.25.211:8080/manager_epub/Images/{{$books->bimg}}" style="width: 120px;height: 150px">
-                    </div>
-
+            <div class="form-group"><label class="col-sm-2 control-label">URL地址:</label>
+                <div class="col-sm-3"><input type="text" class="form-control" name="urla" value="{{$res->url}}" placeholder="请以http://或https://开头">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
-
-            <div class="form-group"><label class="col-sm-2 control-label">作　　者:</label>
-
-                <div class="col-sm-3"><input type="input" name="author" class="form-control"  value="{{$books->author}}"></div>
-            </div>
-            <div class="hr-line-dashed"></div>
-            <div class="form-group"><label class="col-sm-2 control-label">出版社:</label>
-
-                <div class="col-sm-3"><input type="input" name="publishing" class="form-control"  value="{{$books->publishing}}"></div>
-            </div>
-            <div class="hr-line-dashed"></div>
-            <div class="form-group"><label class="col-sm-2 control-label">出版属性:</label>
-
-                <div class="col-sm-3"><input type="input" name="Publishing_attributes" class="form-control"  value="{{$books->Publishing_attributes}}">
-
-                </div>
-            </div>
-            <div class="hr-line-dashed"></div>
-            <div class="form-group"><label class="col-sm-2 control-label">书籍简介:</label>
+            <div class="form-group"><label class="col-sm-2 control-label">图　　片:</label>
 
                 <div class="col-sm-3">
-                    <textarea name="synopsis" style="width: 600px;height: 200px" >
-                        {{$books->synopsis}}
-                    </textarea>
-                        <!-- <input type="input" name="password" class="form-control"  value=""> -->
-
+                    <input type="file" class="form-control"  id="file0" name="imgs">
                 </div>
+                 <!-- <input type="file" name="file0" id="file0" multiple="multiple " /> -->
+                 <div style="margin-left: 200px" >
+
+                 <br><br><img  src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$res->image;?>" id="img0" width="400" height="200" class="">
+                 </div>
             </div>
             <div class="hr-line-dashed"></div>
 
-            <div class="form-group"><label class="col-sm-2 control-label">VIP:</label>
+          <!--   <div class="form-group"><label class="col-sm-2 control-label">视频:</label>
+
+                <div class="col-sm-3"><input type="text" name="age" class="form-control"></div>
+            </div> -->
+
+            <!-- <div class="hr-line-dashed"></div> -->
+            <div class="form-group"><label class="col-sm-2 control-label">状　　态:</label>
                 <div class="col-sm-3">
-                    <label><input type="radio" checked="" id="optionsRadios1" name="isvip" value="2" {{$books->isvip == '2' ? 'checked' : ''}} >是</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label> <input type="radio" id="optionsRadios2" name="isvip" value="1"  {{$books->isvip == '1' ? 'checked' : ''}}>免费</label>
+                    <label><input type="radio" checked="" id="optionsRadios1" name="status" value="1" {{$res->status == '1' ? 'checked' : ''}} >启用</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label> <input type="radio" id="optionsRadios2" name="status" value="2" {{$res->status == '2' ? 'checked' : ''}}>禁用</label>
                 </div>
             </div>
 
+ 
 
-          <div class="hr-line-dashed"></div>
 
-            <div class="form-group"><label class="col-sm-2 control-label">推荐:</label>
+
+           <div class="hr-line-dashed"></div>
+           <!--  <div class="form-group"><label class="col-sm-2 control-label">广告类型:</label>
                 <div class="col-sm-3">
-                    <label><input type="radio" checked="" id="optionsRadios1" name="isrecommend" value="1" {{$books->isrecommend == '1' ? 'checked' : ''}} >推荐</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label> <input type="radio" id="optionsRadios2" name="isrecommend" value="0"  {{$books->isrecommend == '0' ? 'checked' : ''}}>不推荐</label>
+                    <label><input type="radio" checked="" id="optionsRadios1" name="types" value="1">图片</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label> <input type="radio" id="optionsRadios2" name="types" value="0">视频</label>
                 </div>
             </div>
-            <div class="hr-line-dashed"></div>
+           <div class="hr-line-dashed"></div> -->
+
 
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
                     <button class="btn btn-white" type="submit">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-primary" type="submit">确认修改</button>
+                    <button class="btn btn-primary" type="submit">添加</button>
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
         </form>
+
     </div>
 
-    <!-- <script>
+    <script>
 
-
-        $("input[name=username],input[name=email]").blur(function(){
-
-            // alert($(this).val());
-            var val = $(this).val();
-            var type = $(this).attr('name');
-            var th = $(this);
-
-            $.post('{{url('admin/checkuser')}}',{'_token':'{{csrf_token()}}','type':type,'val':val},function(data){
-                if(data.status == 0){
-                    layer.msg(data.msg, {icon: 5});
-                    th.attr('style','border:1px solid red');
-                } else {
-                    th.attr('style',false );
-                }
-            });
-
-
-
-        })
-
-
-    </script> -->
-       <script>
-
-        $("#file_upload").change(function(){
+//yanzheng (待定)
+         $("#file0").change(function(){
             uploadImage();
         });
 
         function uploadImage() {
             //  判断是否有选择上传文件
-            var imgPath = $("#file_upload").val();
+            var imgPath = $("#file0").val();
             if (imgPath == "") {
                 alert("请选择上传图片！");
                 return;
@@ -144,27 +110,61 @@
                 alert("请选择图片文件");
                 return;
             }
-            var formData = new FormData($('#art_form')[0]);
-            $.ajax({
-                type: "POST",
-                url: "/admin/upload/plates",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-//                    本地服务器
-//                    $('#img1').attr('src','/'+data);
-//                    阿里云OSS
-                    $('#img1').attr('src','http://bbs189.oss-cn-beijing.aliyuncs.com/'+data);
-
-                    $('#art_thumb').val('/'+data);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("上传失败，请检查网络后重试");
-                }
-            });
+     
         }
 
+
+
+        // 图片预览
+    $("#file0").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) 
+        {
+            $("#img0").attr("src", objUrl);
+            $("#img0").removeClass("hide");
+        }
+    }) ;
+    //建立一個可存取到該file的url
+    function getObjectURL(file) 
+    {
+        var url = null ;
+        if (window.createObjectURL!=undefined) 
+        { // basic
+            url = window.createObjectURL(file) ;
+        }
+        else if (window.URL!=undefined) 
+        {
+            // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } 
+        else if (window.webkitURL!=undefined) {
+            // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
+    //表单验证
+
+        $("input[name=name]").blur(function(){
+
+            // alert($(this).val());
+            var val = $(this).val();
+            var type = $(this).attr('name');
+            var th = $(this);
+
+            $.post('{{url('admin/adv/yzurl')}}',{'_token':'{{csrf_token()}}','type':type,'val':val},function(data){
+                if(data.status == 0){
+                    layer.msg(data.msg, {icon: 5});
+                    th.attr('style','border:1px solid red');
+                } else {
+                    th.attr('style',false );
+                }
+            });
+
+
+
+        })
 
 
     </script>

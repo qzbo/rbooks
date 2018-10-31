@@ -65,6 +65,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('/adv/disable/{id}','AdvController@disable');
     // 修改广告状态为启用
     Route::post('/adv/Enable/{id}','AdvController@Enable');
+    //视频广告页面调取
+    Route::get('/advvid','AdvVideoController@advvidadd');
+    //视频广告页面提交
+    Route::post('/advvid/doadd','AdvVideoController@doadvvidadd');
+
+    Route::get('/advvid/update/{id}','AdvVideoController@update');
+    
+    Route::post('/advvid/doupdate/{id}','AdvVideoController@doupdate');
 
 
 

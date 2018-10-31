@@ -23,28 +23,31 @@
 
     <div class="ibox-content">
 
-        <form method="post" class="form-horizontal" action="{{url('admin/adv')}}" enctype="multipart/form-data">
+        <form method="post" class="form-horizontal" action="{{url('/advvid/doupdate/').'/'.$res->id}}" enctype="multipart/form-data">
             {{csrf_field()}}
+             
 
             <div class="form-group"><label class="col-sm-2 control-label">标题名称:</label>
 
-                <div class="col-sm-3"><input type="text" class="form-control" name="name"></div>
+                <div class="col-sm-3"><input type="text" class="form-control" name="name" value="{{$res->name}}"></div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group"><label class="col-sm-2 control-label">URL地址:</label>
-                <div class="col-sm-3"><input type="text" class="form-control" name="urla" placeholder="请以http://或https://开头">
+                <div class="col-sm-3"><input type="text" class="form-control" name="urla" value="{{$res->url}}" placeholder="请以http://或https://开头">
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
-            <div class="form-group"><label class="col-sm-2 control-label">图　　片:</label>
+            <div class="form-group"><label class="col-sm-2 control-label">视　　频:</label>
 
                 <div class="col-sm-3">
-                    <input type="file" class="form-control"  id="file0" name="imgs">
+                    <input type="file" class="form-control"  id="file0" name="video">
                 </div>
                  <!-- <input type="file" name="file0" id="file0" multiple="multiple " /> -->
-                 <div style="margin-left: 200px">
+                 <div style="margin-left: 200px" >
 
-                 <br><br><img src="" id="img0" width="400" height="200" class="hide">
+                 <br><br>  
+                 <video src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$res->video;?>"   controls="controls" width="300" height="400" >
+                            </video>
                  </div>
             </div>
             <div class="hr-line-dashed"></div>
@@ -57,10 +60,15 @@
             <!-- <div class="hr-line-dashed"></div> -->
             <div class="form-group"><label class="col-sm-2 control-label">状　　态:</label>
                 <div class="col-sm-3">
-                    <label><input type="radio" checked="" id="optionsRadios1" name="status" value="1">启用</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label> <input type="radio" id="optionsRadios2" name="status" value="2">禁用</label>
+                    <label><input type="radio" checked="" id="optionsRadios1" name="status" value="1" {{$res->status == '1' ? 'checked' : ''}} >启用</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label> <input type="radio" id="optionsRadios2" name="status" value="2" {{$res->status == '2' ? 'checked' : ''}}>禁用</label>
                 </div>
             </div>
+
+ 
+
+
+
            <div class="hr-line-dashed"></div>
            <!--  <div class="form-group"><label class="col-sm-2 control-label">广告类型:</label>
                 <div class="col-sm-3">

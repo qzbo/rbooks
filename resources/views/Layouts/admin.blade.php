@@ -103,7 +103,7 @@
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{url('admin/adv')}}">广告列表</a></li>
                         <li><a href="{{url('admin/adv/create')}}">添加图片广告</a></li>
-                        <li><a href="{{url('admin/adv/createvid')}}">添加视频广告</a></li>
+                        <li><a href="{{url('admin/advvid')}}">添加视频广告</a></li>
 
                         
                     </ul>

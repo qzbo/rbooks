@@ -23,7 +23,7 @@
 
     <div class="ibox-content">
 
-        <form method="post" class="form-horizontal" action="{{url('admin/adv')}}" enctype="multipart/form-data">
+        <form method="post" class="form-horizontal" action="{{url('admin/advvid/doadd')}}" enctype="multipart/form-data">
             {{csrf_field()}}
 
             <div class="form-group"><label class="col-sm-2 control-label">标题名称:</label>
@@ -36,10 +36,10 @@
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
-            <div class="form-group"><label class="col-sm-2 control-label">图　　片:</label>
+            <div class="form-group"><label class="col-sm-2 control-label">视　　频:</label>
 
                 <div class="col-sm-3">
-                    <input type="file" class="form-control"  id="file0" name="imgs">
+                    <input type="file" class="form-control"  id="file0" name="video">
                 </div>
                  <!-- <input type="file" name="file0" id="file0" multiple="multiple " /> -->
                  <div style="margin-left: 200px">
@@ -85,7 +85,6 @@
 
     <script>
 
-//yanzheng (待定)
          $("#file0").change(function(){
             uploadImage();
         });
@@ -94,14 +93,14 @@
             //  判断是否有选择上传文件
             var imgPath = $("#file0").val();
             if (imgPath == "") {
-                alert("请选择上传图片！");
+                alert("请选择上传视频！");
                 return;
             }
             //判断上传文件的后缀名
             var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
-            if (strExtension != 'jpg' && strExtension != 'gif'
-                && strExtension != 'png' && strExtension != 'bmp') {
-                alert("请选择图片文件");
+            if (strExtension != 'mp4' && strExtension != 'mpg'
+                && strExtension != 'mpeg' && strExtension != 'mov' && strExtension != 'avi') {
+                alert("请选择视频文件");
                 return;
             }
      
@@ -109,35 +108,6 @@
 
 
 
-        // 图片预览
-    $("#file0").change(function(){
-        var objUrl = getObjectURL(this.files[0]) ;
-        console.log("objUrl = "+objUrl) ;
-        if (objUrl) 
-        {
-            $("#img0").attr("src", objUrl);
-            $("#img0").removeClass("hide");
-        }
-    }) ;
-    //建立一個可存取到該file的url
-    function getObjectURL(file) 
-    {
-        var url = null ;
-        if (window.createObjectURL!=undefined) 
-        { // basic
-            url = window.createObjectURL(file) ;
-        }
-        else if (window.URL!=undefined) 
-        {
-            // mozilla(firefox)
-            url = window.URL.createObjectURL(file) ;
-        } 
-        else if (window.webkitURL!=undefined) {
-            // webkit or chrome
-            url = window.webkitURL.createObjectURL(file) ;
-        }
-        return url ;
-    }
     //表单验证
 
         $("input[name=name]").blur(function(){

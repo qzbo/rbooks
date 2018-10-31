@@ -29,20 +29,13 @@ class AdvController extends Controller
         
         $input = $request->input('name')?$request->input('name'):'';
         // 用户名查询、每页显示条数（拼接）
-        $res = Adv::where('name','like','%'.$input.'%')->paginate($num);
+        $res = Adv::where('name','like','%'.$input.'%')->orderby('id','desc')->paginate($num);
 
-// dd($res);
         $sta = ['保密','启用','禁用'];
 
         $isvia = ['保密','图片','视频'];
 
-        // return view('admin/user/index',compact('user','sex','input','num'));
-
-
-
         return view('admin/adv/index',compact('res','sta','isvia','num','input'));
-
-
 
 
     }
@@ -102,6 +95,10 @@ class AdvController extends Controller
             $file = $input['imgs'];
 
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
+
+            
+              //   // $file_type = $file->getClientMimeType();
+                // dd($file);
             // dd($entension);
             if ($entension != 'jpeg' && $entension != 'jpg' && $entension != 'png') {
                 # code...
@@ -155,7 +152,12 @@ class AdvController extends Controller
      */
     public function edit($id)
     {
-        //
+        //  
+        $res = Adv::find($id);
+
+        // dd($res);
+
+        return view('admin/adv/edit',compact('res'));
     }
 
     /**
@@ -167,7 +169,84 @@ class AdvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+          //接收表单数据
+        $input = $request->except('_token','_method');
+      
+         $rule=[
+            'name'=>'required',
+            // 'imgs'=>'required',
+            'urla'=>'required',
+            'urla'=>['regex:/^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?$/']
+        ];
+        $msg = [
+            'name.required'=>'标题名称必须输入',
+            // 'imgs.required'=>'请选择图片',
+            'urla.required'=>'url必须输入',
+            'urla.regex'=>'url格式不正确'
+        ];
+
+        //进行手工表单验证
+            $validator = Validator::make($input,$rule,$msg);
+        //如果验证失败
+            if ($validator->fails()) {
+                return redirect('admin/adv/'.$id.'/edit')
+                    ->withErrors($validator)
+                    ->withInput();
+            }   
+
+          $adv = Adv::find($id);   
+
+        //检查是否上传了新图片,未上传的话不执行图片修改
+        if (!$request -> hasFile('imgs')) {
+            //    
+            $adv ->image =  $adv ->image;
+            
+        } else{ 
+            
+           $file = $input['imgs'];
+
+            $entension = $file->getClientOriginalExtension();//上传文件的后缀名
+            // dd($entension);
+
+            if ($entension != 'jpeg' && $entension != 'jpg' && $entension != 'png') {
+                # code...
+                  return back()->with('errors', '请输入jpeg|jpg|png格式的图片')->withInput();
+
+            }
+            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+            $time = date('Ymd',time());
+            //本地服务器保存图片
+            $path = $file->move(public_path().'/uploads/images'."/$time/",$newName);
+            $adv-> image = '/uploads/images'."/$time/".$newName;
+
+        }
+                                                                                                                               
+            $adv -> name = $input['name'];
+            $adv -> url = $input['urla'];
+            $adv -> status = $input['status'];
+            $adv-> ctime = time();
+          
+            $adv -> isvi = 1;
+
+
+            $res = $adv -> update();
+       
+
+        if ($res) {
+    
+            return redirect('admin/adv');
+        } else {
+    
+            return back()->with('errors','修改失败');
+        }
+
+
+
+
+
+
+
     }
 
     /**
@@ -247,6 +326,10 @@ class AdvController extends Controller
 
         
     }
+
+
+
+
 
 
 }
