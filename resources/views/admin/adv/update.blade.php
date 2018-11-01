@@ -23,7 +23,7 @@
 
     <div class="ibox-content">
 
-        <form method="post" class="form-horizontal" action="{{url('/advvid/doupdate/').'/'.$res->id}}" enctype="multipart/form-data">
+        <form method="post" class="form-horizontal" action="{{url('/admin/advvid/doupdate/').'/'.$res->id}}" enctype="multipart/form-data">
             {{csrf_field()}}
              
 
@@ -46,7 +46,7 @@
                  <div style="margin-left: 200px" >
 
                  <br><br>  
-                 <video src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$res->video;?>"   controls="controls" width="300" height="400" >
+                 <video id="img0"  src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$res->video;?>"   controls="controls" width="300" height="400" >
                             </video>
                  </div>
             </div>
@@ -72,7 +72,7 @@
            <div class="hr-line-dashed"></div>
            <!--  <div class="form-group"><label class="col-sm-2 control-label">广告类型:</label>
                 <div class="col-sm-3">
-                    <label><input type="radio" checked="" id="optionsRadios1" name="types" value="1">图片</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label><input type="radio" checked="" id="optionsRadios1" name="types" value="1">视频</label>&nbsp;&nbsp;&nbsp;&nbsp;
                     <label> <input type="radio" id="optionsRadios2" name="types" value="0">视频</label>
                 </div>
             </div>
@@ -102,14 +102,14 @@
             //  判断是否有选择上传文件
             var imgPath = $("#file0").val();
             if (imgPath == "") {
-                alert("请选择上传图片！");
+                alert("请选择上传视频！");
                 return;
             }
             //判断上传文件的后缀名
             var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
-            if (strExtension != 'jpg' && strExtension != 'gif'
-                && strExtension != 'png' && strExtension != 'bmp') {
-                alert("请选择图片文件");
+            if (strExtension != 'mp4' && strExtension != 'mpg'
+                && strExtension != 'mpeg' && strExtension != 'mov' && strExtension != 'avi') {
+                alert("请选择视频文件");
                 return;
             }
      
@@ -117,7 +117,7 @@
 
 
 
-        // 图片预览
+        // 视频预览
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
         console.log("objUrl = "+objUrl) ;

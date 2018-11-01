@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Input;
 class AdvController extends Controller
 {
 
-    public function __construct()
-  {
-     
-  }
+    
     /**
      * Display a listing of the resource.
      *
@@ -25,17 +22,17 @@ class AdvController extends Controller
      */
     public function index(Request $request)
     {
-       $num = $request->input('pagea')?$request->input('pagea'): 5;
+        $num = $request->input('pagea')?$request->input('pagea'): 5;
+        $isvi = $request->input('vi')?$request->input('vi'): '';
         
         $input = $request->input('name')?$request->input('name'):'';
         // 用户名查询、每页显示条数（拼接）
-        $res = Adv::where('name','like','%'.$input.'%')->orderby('id','desc')->paginate($num);
-
+       $res = Adv::where('name','like','%'.$input.'%')->where('isvi','like','%'.$isvi.'%')->orderby('id','desc')->paginate($num);
         $sta = ['保密','启用','禁用'];
 
         $isvia = ['保密','图片','视频'];
 
-        return view('admin/adv/index',compact('res','sta','isvia','num','input'));
+        return view('admin/adv/index',compact('res','sta','isvia','num','input','isvi'));
 
 
     }

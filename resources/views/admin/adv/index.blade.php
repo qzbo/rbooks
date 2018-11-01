@@ -10,7 +10,7 @@
                 <form action="{{url('/admin/adv')}}" method="get">
                     <div class="row">
                         
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="dataTables_length" id="editable_length">
                                 <label>
                                     每页显示
@@ -41,15 +41,41 @@
                                 </label>
                             </div>
                         </div>
+
+                      <div class="col-md-2">
+                            <div class="dataTables_length" id="editable_length">
+                                <label>
+                                    广告类型
+                                    <select name="vi" aria-controls="editable" class="form-control ">
+                                         <option value="" >|--选择类别--|</option>
+                                        <option value="1"
+                                                @if($isvi==1)
+                                                selected="selected"
+                                                @endif>
+                                            图片
+                                        </option>
+                                        <option value="2"  
+                                          @if($isvi==2)
+                                        selected="selected"
+                                                @endif>
+                                            视频
+                                        </option>
+                                        
+                                    </select>
+
+                                </label>
+                            </div>
+                        </div>
  
-                        <div class="col-sm-6">
+
+                        <div class="col-sm-4">
                             <div id="editable_filter" class="dataTables_filter">
                                 <label>
                                     搜索：<input type="search" class="form-control input-sm" name="name" value="{{ !empty($_GET['name']) ? $_GET['name'] : '' }}" placeholder="输入广告名称">
 
                                 </label>
                               
-                                <input type="submit" class="btn btn-primary btn-sm" value="查询">
+                                <input type="submit" style="margin-left: 50px" class="btn btn-primary btn-sm" value="查询">
 
                                 <!-- </div> -->
 

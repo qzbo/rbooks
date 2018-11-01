@@ -80,12 +80,12 @@ class AdvVideoController extends Controller
 
 
             $adv = new Adv();                                                                                                                                    
-            $adv -> name = $input['name'];
-            $adv -> url = $input['urla'];
-            $adv -> status = $input['status'];
-            $adv-> ctime = time();
-            $adv-> video = '/uploads/videos'."/$time/".$newName;
-            $adv -> isvi = 2;
+            $adv ->name = $input['name'];
+            $adv ->url = $input['urla'];
+            $adv ->status = $input['status'];
+            $adv ->ctime = time();
+            $adv ->video = '/uploads/videos'."/$time/".$newName;
+            $adv ->isvi = 2;
 
 
             $res = $adv -> save();
@@ -111,11 +111,11 @@ class AdvVideoController extends Controller
     public function doupdate(Request $request ,$id)
     {
 
-    	dd(123);
+    
 
     	# code...
     	    //接收表单数据
-        $input = $request->except('_token','_method');
+        $input = $request->except('_token');
       
          $rule=[
             'name'=>'required',
@@ -144,7 +144,7 @@ class AdvVideoController extends Controller
         //检查是否上传了新图片,未上传的话不执行图片修改
         if (!$request -> hasFile('video')) {
             //    
-            $adv ->image =  $adv ->image;
+            $adv ->video =  $adv ->video;
             
         } else{ 
             
@@ -153,25 +153,25 @@ class AdvVideoController extends Controller
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
             // dd($entension);
 
-            if ($entension != 'jpeg' && $entension != 'jpg' && $entension != 'png') {
+            if ($entension != 'mp4' && $entension != 'mov' && $entension != 'avi') {
                 # code...
-                  return back()->with('errors', '请输入jpeg|jpg|png格式的图片')->withInput();
+                  return back()->with('errors', '请输入mp4|mov|avi格式的图片')->withInput();
 
             }
             $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
             $time = date('Ymd',time());
             //本地服务器保存图片
-            $path = $file->move(public_path().'/uploads/images'."/$time/",$newName);
-            $adv-> image = '/uploads/images'."/$time/".$newName;
+            $path = $file->move(public_path().'/uploads/videos'."/$time/",$newName);
+            $adv->video = '/uploads/videos'."/$time/".$newName;
 
         }
                                                                                                                                
-            $adv -> name = $input['name'];
-            $adv -> url = $input['urla'];
-            $adv -> status = $input['status'];
-            $adv-> ctime = time();
+            $adv ->name = $input['name'];
+            $adv ->url = $input['urla'];
+            $adv ->status = $input['status'];
+            $adv->ctime = time();
           
-            $adv -> isvi = 1;
+            $adv ->isvi = 2;
 
 
             $res = $adv -> update();
@@ -183,12 +183,7 @@ class AdvVideoController extends Controller
         } else {
     
             return back()->with('errors','修改失败');
-        }
-
-
-
-
-
+        } 
 
     }
 

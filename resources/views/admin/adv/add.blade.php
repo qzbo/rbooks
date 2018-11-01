@@ -44,7 +44,12 @@
                  <!-- <input type="file" name="file0" id="file0" multiple="multiple " /> -->
                  <div style="margin-left: 200px">
 
-                 <br><br><img src="" id="img0" width="400" height="200" class="hide">
+                 <br><br>
+                   <video  id="img0" src=""   controls="controls" width="400" height="300" class="hide">
+                            </video>
+                 
+
+
                  </div>
             </div>
             <div class="hr-line-dashed"></div>
@@ -105,6 +110,36 @@
             }
      
         }
+
+        // 视频预览
+    $("#file0").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) 
+        {
+            $("#img0").attr("src", objUrl);
+            $("#img0").removeClass("hide");
+        }
+    }) ;
+    //建立一個可存取到該file的url
+    function getObjectURL(file) 
+    {
+        var url = null ;
+        if (window.createObjectURL!=undefined) 
+        { // basic
+            url = window.createObjectURL(file) ;
+        }
+        else if (window.URL!=undefined) 
+        {
+            // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        } 
+        else if (window.webkitURL!=undefined) {
+            // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
 
 
 
