@@ -21,6 +21,12 @@ class IndexController extends Controller
     public function index()
     {
         //
+        
+
+
+// qzbrbooks2018
+
+        // WxxXWSdiiGDAl6vxvFLDdNeVBYxPttLL6ivGQcs9Ih6
 
         // $res = chapters::where('book_id','=',1)->get();
        $res = db::table('chapters')->where('book_id',1)->get();

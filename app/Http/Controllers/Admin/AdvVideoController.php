@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Input;
 class AdvVideoController extends Controller
 {
     //
-
+    // 展示添加视频广告页面
     public function advvidadd()
     {
         
@@ -25,6 +25,7 @@ class AdvVideoController extends Controller
 
 
     }
+    // 执行添加
     public function doadvvidadd(Request $request)
     {
 //接收表单数据
@@ -98,6 +99,7 @@ class AdvVideoController extends Controller
         }
 
     }
+    // 展示修改页面
     public function update($id)
     {
     	# code...
@@ -107,7 +109,7 @@ class AdvVideoController extends Controller
 
     	return view('admin/adv/update',compact('res'));
     }
-
+    // 执行修改
     public function doupdate(Request $request ,$id)
     {
 

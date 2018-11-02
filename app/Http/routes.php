@@ -81,5 +81,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 //前台测试接口展示 
 Route::get('home/index','Home\IndexController@index');
 
+Route::any('/wechat', 'WeChatController@serve');
 
 
