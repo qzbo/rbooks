@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fb14033-0f23-4600-af82-ff70f651b9db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/role/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/role/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/role/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/user/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/user/edit.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="5fb14033-0f23-4600-af82-ff70f651b9db" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="269" column="21" lean-forward="true" selection-start-line="269" selection-start-column="21" selection-end-line="269" selection-end-column="21" />
+            <state relative-caret-position="286">
+              <caret line="259" column="20" lean-forward="true" selection-start-line="259" selection-start-column="20" selection-end-line="259" selection-end-column="20" />
               <folding>
                 <element signature="e#46#65#0#PHP" expanded="true" />
               </folding>
@@ -371,12 +361,12 @@
       <workItem from="1541498068360" duration="339000" />
       <workItem from="1541569884585" duration="12839000" />
       <workItem from="1541657721953" duration="3397000" />
-      <workItem from="1541740540182" duration="4465000" />
+      <workItem from="1541740540182" duration="4658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21330000" />
+    <option name="totallyTimeSpent" value="21523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="470" y="187" width="1327" height="812" extended-state="0" />
@@ -558,8 +548,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="269" column="21" lean-forward="true" selection-start-line="269" selection-start-column="21" selection-end-line="269" selection-end-column="21" />
+        <state relative-caret-position="286">
+          <caret line="259" column="20" lean-forward="true" selection-start-line="259" selection-start-column="20" selection-end-line="259" selection-end-column="20" />
           <folding>
             <element signature="e#46#65#0#PHP" expanded="true" />
           </folding>
