@@ -87,6 +87,7 @@
                         <!-- <li><a href="{{url('admin/userhome')}}">前台用户列表</a></li> -->
                         <li><a href="{{url('admin/user')}}">管理员用户列表</a></li>
                         <li><a href="{{url('/admin/user/create')}}">添加管理员用户</a></li>
+                        <li><a href="{{url('/admin/role/')}}">用户组管理</a></li>
                     </ul>
 
                 </li>

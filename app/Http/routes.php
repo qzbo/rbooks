@@ -43,6 +43,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/repass','UserController@repass');
     Route::post('/dorepass/{id}','UserController@dorepass');
 
+//    角色路由 （管理员）
+    Route::resource('/role','RoleController');
+    Route::post('/role/check_role','RoleController@role_check');
+
+
 
     // 图书分类管理
     Route::resource('/bclassify','BclassifyController');
@@ -81,6 +86,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 //前台测试接口展示 
 Route::get('home/index','Home\IndexController@index');
 
-Route::any('/wechat', 'WeChatController@serve');
+Route::any('/wechat', 'Wechat\WechatController@serve');
 
 
