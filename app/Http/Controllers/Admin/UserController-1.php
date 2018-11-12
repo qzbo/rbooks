@@ -47,8 +47,9 @@ class UserController extends Controller
     {
         //
 
-
-        return view('admin.user.create');
+        $role = Role::all();
+//        dd($role);
+        return view('admin.user.create',compact('role'));
     }
 
     /**
@@ -113,6 +114,7 @@ class UserController extends Controller
         // $user->nickname = $input['nickname'];
         $user->sex = $input['sex'];
         $user->age = $input['age'];
+        $user->role_id = $input['role_id'];
         $user->phone = $input['phone'];
         $user->email = $input['email'];
 
@@ -154,9 +156,9 @@ class UserController extends Controller
         //获取要修改的那条记录
         $user = User::find($id);
 
-
+        $role = Role::get();
     
-        return view('admin/user/edit',compact('user'));
+        return view('admin/user/edit',compact('user','role'));
     }
 
     /**
@@ -175,9 +177,11 @@ class UserController extends Controller
         $input_sex = $request->input('sex');
         $input_age = $request->input('age');
         $input_phone = $request->input('phone');
+        $input_role_id = $request->input('role_id');
         $input_email = $request->input('email');
 
         $user = User::find($id);
+
   
         $user->username = $input_name;
 
@@ -193,6 +197,7 @@ class UserController extends Controller
 
         $user->sex = $input_sex;
         $user->age = $input_age;
+        $user->role_id = $input_role_id;
         $user->phone = $input_phone;
         $user->email = $input_email;
 
@@ -320,49 +325,5 @@ class UserController extends Controller
             return redirect('admin/repass')->with('msg','密码修改失败');
         }
     }
-    public function  auth(Request $request,$id)
-    {
-//  获取用户记录
-    $users = User::find($id);
-//  获取所有角色
-    $roles = Role::get();
-//  获取用户已经拥有的权限
-    $own_roles= DB::table('user_role')->where('user_id','=',$id)->lists('role_id');
-
-       return view('admin/user/auth',compact('users','roles','own_roles'));
-
-
-    }
-
-    public function doauth(Request $request){
-
-
-//    $input = $request->except('_token');
-
-    $user_id = $request->input('user_id');
-
-    $roles = $request->input('role_id');
-
-//    删除当前的用户的所有权限
-
-        DB::table('user_role')->where('user_id',$user_id)->delete();
-
-
-    foreach ($roles as $roles ){
-
-        DB::table('user_role')->insert(['user_id'=>$user_id,'role_id'=>$roles]);
-
-
-
-
-      }
-
-        return redirect('admin/user');
-
-
-
-    }
-
-
 
 }

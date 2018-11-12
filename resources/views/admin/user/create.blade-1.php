@@ -26,6 +26,33 @@
             {{csrf_field()}}
 
 
+            <div class="form-group"><label class="col-sm-2 control-label">选择用户组:</label>
+
+                <div class="col-md-3">
+                    <div class="dataTables_length" id="editable_length">
+                        <label>
+
+
+                            <select name="role_id" aria-controls="editable" class="form-control ">
+                            <?foreach($role as $k => $v):?>
+
+                                <option value="{{$v->role_id}}"
+
+                                        selected="selected">{{$v->role_name}}
+
+
+                                </option>
+
+                            <?php endforeach;?>
+
+                            </select>
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
 
 
             <div class="form-group"><label class="col-sm-2 control-label">用 户 名:</label>

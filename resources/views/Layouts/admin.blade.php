@@ -91,10 +91,11 @@
                     </ul>
 
                 </li>
+
                 <li>
                     <a href="javascript:;" ><i class="fa fa-th-large"></i> <span class="nav-label">图书管理</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{url('admin/bclassify')}}">图书分类</a></li>
+                        {{--<li><a href="{{url('admin/bclassify')}}">图书分类</a></li>--}}
                         <li><a href="{{url('admin/books')}}">图书列表</a></li>
                         <li><a href="{{url('admin/parsing')}}">图书解析</a></li>
                     </ul>
@@ -108,6 +109,15 @@
 
                         
                     </ul>
+                </li>
+                <li>
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">权限管理</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{url('admin/permission')}}">权限列表</a></li>
+                        <li><a href="{{url('/admin/permission/create')}}">添加权限</a></li>
+
+                    </ul>
+
                 </li>
                 <!-- 帖子管理 -->
          <!--        <li>
@@ -155,7 +165,7 @@
                     </ul>
                 </li> -->
                 <li>
-                    <a href="{{url('admin/webconfigs')}}" ><i class="fa fa-th-large"></i> <span class="nav-label">网站设置</span></a>
+                    {{--<a href="{{url('admin/webconfigs')}}" ><i class="fa fa-th-large"></i> <span class="nav-label">网站设置</span></a>--}}
                 </li>
             </ul>
 

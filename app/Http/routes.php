@@ -46,6 +46,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 //    角色路由 （管理员）
     Route::resource('/role','RoleController');
     Route::post('/role/check_role','RoleController@role_check');
+//    授权
+    Route::get('/user/auth/{id}','UserController@auth');
+//    提交授权页面
+    Route::post('/user/doauth','UserController@doauth');
+//权限
+    Route::resource('/permission','PermissionController');
+
 
 
 
