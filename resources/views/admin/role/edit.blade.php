@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
-                    <button class="btn btn-white" type="submit">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-white" type="submit"><a href="{{url('admin/role')}}">取消</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-primary" type="submit">确认修改</button>
                 </div>
             </div>

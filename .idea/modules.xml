@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../hospital/.idea/hospital.iml" filepath="$PROJECT_DIR$/../hospital/.idea/hospital.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rbooks.iml" filepath="$PROJECT_DIR$/.idea/rbooks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../wx-reader/.idea/wx-reader.iml" filepath="$PROJECT_DIR$/../wx-reader/.idea/wx-reader.iml" />
     </modules>
   </component>
 </project>

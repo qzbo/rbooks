@@ -37,16 +37,16 @@
                                         </option>
                                     </select>
 
-                                </label>
+                                 </label>
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <a href="{{url('admin/role/create')}}" class="btn btn-info btn-sm" style="font-size:16px;">添加用户组</a>
+                            <a href="{{url('admin/permission/create')}}" class="btn btn-info btn-sm" style="font-size:16px;">添加权限</a>
                         </div>
                         <div class="col-sm-6">
                             <div id="editable_filter" class="dataTables_filter">
                                 <label>
-                                    搜索：<input type="search" class="form-control input-sm" name="role_name" value="{{ !empty($_GET['role_name']) ? $_GET['role_name'] : '' }}" placeholder="输入用户组名称">
+                                    搜索：<input type="search" class="form-control input-sm" name="permission_name" value="{{ !empty($_GET['permission_name']) ? $_GET['permission_name'] : '' }}" placeholder="输入用户组名称">
 
                                 </label>
                                 <!-- <input type="submit" value="提交"> -->
@@ -72,10 +72,12 @@
                     <thead>
                     <tr role="row">
                         <!-- <th></th> -->
-                        <th class="sorting_asc" style="width: 70px;">ID号</th>
-                        <th class="sorting_asc"  style="width: 253px;">用户组名称</th>
-                        <th class="sorting_asc"  style="width: 253px;">用户组描述</th>
+                        <th class="sorting_asc"  style="width: 70px;">ID号</th>
+                        <th class="sorting_asc"  style="width: 253px;">权限名称</th>
+                        <th class="sorting_asc"  style="width: 253px;">控制器@方法</th>
+                        <th class="sorting_asc"  style="width: 253px;">权限描述</th>
                         <th class="sorting_asc"  style="width: 253px;">添加时间</th>
+                        {{--<th class="sorting_asc"  style="width: 253px;">显示隐藏</th>--}}
 
                         <th class="sorting_asc"  style="width: 175px;">操作</th>
                     </tr>
@@ -85,17 +87,20 @@
                 @foreach($res as $k=>$v)
                     <tr class="gradeA odd" role="row">
 
-                        <td class="sorting_1">{{$v->role_id}}</td>
-                        <td>{{$v->role_name}}</td>
+                        <td class="sorting_1">{{$v->permission_id}}</td>
+                        <td>{{$v->permission_name}}</td>
+                        <td>{{$v->permission_url}}</td>
 
-                         <td>{{$v->role_description}}</td>
+                         <td>{{$v->permission_description}}</td>
 
-                         <td>{{date("Y-m-d H:i:s",$v->role_ctime)}}</td>
+                         <td>{{date("Y-m-d H:i:s",$v->permission_ctime)}}</td>
+                        {{--<td>{{$v->permission_status}}</td>--}}
 
-                    <td>
-                        <a href="/admin/role/{{$v->role_id}}/edit" class="btn btn-success btn-sm">修改</a>
 
-                        <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->role_id}}')">删除</a>
+                        <td>
+                        <a href="/admin/permission/{{$v->permission_id}}/edit" class="btn btn-success btn-sm">修改</a>
+
+                        <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->permission_id}}')">删除</a>
                        </td>
                     </tr>
                 @endforeach
@@ -106,7 +111,7 @@
                     </tbody>
                 </table>
                 <div>
-                     {!! $res->appends(['role_name'=>$input,'pages'=>$num])->render()!!}
+                     {!! $res->appends(['permission_name'=>$input,'pages'=>$num])->render()!!}
                 </div>
             </div>
         </div>
@@ -122,7 +127,7 @@
                     btn: ['确认','取消']
                 }, function(){
 //                通过ajax 向服务器发送一个删除请求
-                    $.post("{{url('admin/role/')}}/"+id,{'_method':'delete','_token':"{{csrf_token()}}"},function(data){
+                    $.post("{{url('admin/permission/')}}/"+id,{'_method':'delete','_token':"{{csrf_token()}}"},function(data){
                       console.log(data);
 
                         if(data.status == 0){

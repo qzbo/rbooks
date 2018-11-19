@@ -20,21 +20,27 @@
         </div>
     @endif
     <div class="ibox-content">
-        <form method="post" class="form-horizontal" action="{{url('admin/role/'.$res->role_id)}}"  enctype="multipart/form-data">
+        <form method="post" class="form-horizontal" action="{{url('admin/permission/'.$res->permission_id)}}"  enctype="multipart/form-data">
             {{csrf_field()}}
             {{method_field('PUT')}}
 
-            <div class="form-group"><label class="col-sm-2 control-label">用户组名称:</label>
+            <div class="form-group"><label class="col-sm-2 control-label"> 权限名称:</label>
 
-                <div class="col-sm-3"><input type="text" class="form-control" name="role_name" value="{{$res->role_name}}"></div>
+                <div class="col-sm-3"><input type="text" class="form-control" name="permission_name" value="{{$res->permission_name}}"></div>
             </div>
             <div class="hr-line-dashed"></div>
 
-            <div class="form-group"><label class="col-sm-2 control-label lg">用户组描述:</label>
+            <div class="form-group"><label class="col-sm-2 control-label">控制器@方法:</label>
 
-                <div class="col-sm-3" class="form-control" name="role_description">
+                <div class="col-sm-3"><input type="text" class="form-control" value="{{$res->permission_url}}" name="permission_url"></div>
+            </div>
+            <div class="hr-line-dashed"></div>
 
-                    <input type="text" class="form-control" name="role_description" value="{{$res->role_description}}">
+            <div class="form-group"><label class="col-sm-2 control-label lg">权限描述:</label>
+
+                <div class="col-sm-3" class="form-control" name="permission_description">
+
+                    <input type="text" class="form-control" name="permission_description" value="{{$res->permission_description}}">
 
                 </div>
             </div>
@@ -42,7 +48,7 @@
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
-                    <button class="btn btn-white" type="submit">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-white" type="submit"><a href="{{url('admin/permission')}}">取消</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-primary" type="submit">确认修改</button>
                 </div>
             </div>

@@ -81,5 +81,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="hospital" />
+    <orderEntry type="module" module-name="wx-reader" />
   </component>
 </module>

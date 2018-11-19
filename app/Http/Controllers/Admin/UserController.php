@@ -196,7 +196,7 @@ class UserController extends Controller
         $user->phone = $input_phone;
         $user->email = $input_email;
 
-        $re = $user->save();
+        $re = $user->update();
 
         //4.判断执行是否成功
         if ($re) {

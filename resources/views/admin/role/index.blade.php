@@ -8,7 +8,7 @@
             <div id="editable_wrapper" class="dataTables_wrapper form-inline">
                 <form action="{{url('/admin/books')}}" method="get">
                     <div class="row">
-                        
+
                         <div class="col-md-3">
                             <div class="dataTables_length" id="editable_length">
                                 <label>
@@ -81,7 +81,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        
+
                 @foreach($res as $k=>$v)
                     <tr class="gradeA odd" role="row">
 
@@ -93,6 +93,8 @@
                          <td>{{date("Y-m-d H:i:s",$v->role_ctime)}}</td>
 
                     <td>
+                        <a href="/admin/role/auth/{{$v->role_id}}" class="btn btn-warning btn-sm">配置规则</a>
+
                         <a href="/admin/role/{{$v->role_id}}/edit" class="btn btn-success btn-sm">修改</a>
 
                         <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->role_id}}')">删除</a>
@@ -100,7 +102,7 @@
                     </tr>
                 @endforeach
 
- 
+
 
 
                     </tbody>

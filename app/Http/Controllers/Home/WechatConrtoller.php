@@ -10,4 +10,9 @@ use App\Http\Controllers\Controller;
 class WechatConrtoller extends Controller
 {
     //
+
+
+
+
+
 }

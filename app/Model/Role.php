@@ -11,7 +11,7 @@ class Role extends Model
 //    设置表名
     protected $table = 'roles';
 //    设置表主键
-//    public  $primaryKey='role_id';
+    public  $primaryKey='role_id';
 
     public $timestamps = false;
 
@@ -22,6 +22,16 @@ class Role extends Model
 
 
     }
+
+    public function permissions()
+    {
+
+        return $this -> belongsToMany('App\Model\Permission','permission_role','role_id','permission_id');
+
+
+    }
+
+
 
 
 }

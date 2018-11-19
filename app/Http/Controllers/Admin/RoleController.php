@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Permission;
 use App\Model\Role;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -129,10 +131,11 @@ class RoleController extends Controller
     {
         //
 
+        $res = Role::where('role_id',$id)->first();
+//        $res = Role::find('role_id',$id);
 
-
-
-        return view('admin/role/edit');
+//    dd($res);
+        return view('admin/role/edit',compact('res'));
     }
 
     /**
@@ -173,7 +176,6 @@ class RoleController extends Controller
         $role = Role::where('role_id',$id)->first();
         $role->role_name = $data['role_name'];
         $role->role_description = $data['role_description'];
-        $role->role_ctime = time();
         $res = $role->update();
 
         if ($res){
@@ -249,6 +251,57 @@ class RoleController extends Controller
         }
 
         return $data;
+    }
+
+
+
+
+//    授权页面
+    public function auth(Request $request,$id)
+    {
+
+
+//  获取用户记录
+        $roles = Role::where('role_id',$id)->first();
+//  获取所有角色
+        $permissions = Permission::get();
+//  获取用户已经拥有的权限
+        $own_permissions= DB::table('permission_role')->where('role_id','=',$id)->lists('permission_id');
+
+        return view('admin/role/auth',compact('roles','permissions','own_permissions'));
+
+
+    }
+
+
+
+    public function doauth(Request $request){
+
+
+//    $input = $request->except('_token');
+
+        $role_id = $request->input('role_id');
+
+        $permissions = $request->input('permission_id');
+
+//    删除当前的用户的所有权限
+
+        DB::table('permission_role')->where('role_id',$role_id)->delete();
+
+
+        foreach ($permissions as $permissions ){
+
+            DB::table('permission_role')->insert(['role_id'=>$role_id,'permission_id'=>$permissions]);
+
+
+
+
+        }
+
+        return redirect('admin/role');
+
+
+
     }
 
 
