@@ -268,6 +268,11 @@ class RoleController extends Controller
 //  获取用户已经拥有的权限
         $own_permissions= DB::table('permission_role')->where('role_id','=',$id)->lists('permission_id');
 
+
+//        $permissions = $this->arr2tree($permissions);
+
+
+
         return view('admin/role/auth',compact('roles','permissions','own_permissions'));
 
 
@@ -304,5 +309,21 @@ class RoleController extends Controller
 
     }
 
+    private  function arr2tree($tree, $rootId = 0,$level=1) {
+        $return = array();
+        foreach($tree as $leaf) {
+            if($leaf['pid'] == $rootId) {
+                $leaf["level"] = $level;
+                foreach($tree as $subleaf) {
+                    if($subleaf['pid'] == $leaf['permission_id']) {
+                        $leaf['children'] = $this->arr2tree($tree, $leaf['permission_id'],$level+1);
+                        break;
+                    }
+                }
+                $return[] = $leaf;
+            }
+        }
+        return $return;
+    }
 
 }

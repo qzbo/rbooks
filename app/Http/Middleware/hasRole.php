@@ -40,9 +40,9 @@ class hasRole
             }
 
         }
-
         $newarr = array_unique($arr);
-        dd($newarr);
+//    dd($newarr);
+//        dd($rout  e);
 
         if(in_array($route,$newarr)){
                 return $next($request);

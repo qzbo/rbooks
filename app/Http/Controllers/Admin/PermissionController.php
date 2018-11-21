@@ -19,16 +19,21 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        $num = $request->input('pages')?$request->input('pages'): 5;
 
-        $input = $request->input('permission_name')?$request->input('permission_name'):'';
         // 用户名查询、每页显示条数（拼接）
-        $res = Permission::where('permission_name','like','%'.$input.'%')->paginate($num);
+        $permission = Permission::get();
+
+        $res = $this->arr2tree($permission);
 
 
-        return view('admin/permission/index',compact('res','num','input'));
+
+
+
+        return view('admin/permission/index',compact('res'));
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,12 +42,21 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        $permission = Permission::get();
 
-        return view('admin/permission/create');
+
+        $res = $this->arr2tree($permission);
+
+
+
+        return view('admin/permission/create',compact('res'));
 
 
     }
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -53,10 +67,11 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         //
-//dd($request->all());
+
 
         $data = $request->except('_token');
 
+//        dd($data);
         $names = $data['permission_name'];
         $name = Permission::where('permission_name',$names)->first();
         if($name){
@@ -90,6 +105,7 @@ class PermissionController extends Controller
 
 
         $permission = new Permission();
+        $permission->pid = $data['pid'];
         $permission->permission_name = $data['permission_name'];
         $permission->permission_url = "App\Http\Controllers\Admin\\".$data['permission_url'];
         $permission->permission_description = $data['permission_description'];
@@ -226,4 +242,23 @@ class PermissionController extends Controller
     {
         //
     }
+
+
+    private  function arr2tree($tree, $rootId = 0,$level=1) {
+        $return = array();
+        foreach($tree as $leaf) {
+            if($leaf['pid'] == $rootId) {
+                $leaf["level"] = $level;
+                foreach($tree as $subleaf) {
+                    if($subleaf['pid'] == $leaf['permission_id']) {
+                        $leaf['children'] = $this->arr2tree($tree, $leaf['permission_id'],$level+1);
+                        break;
+                    }
+                }
+                $return[] = $leaf;
+            }
+        }
+        return $return;
+    }
+
 }

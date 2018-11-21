@@ -1,70 +1,16 @@
 @extends("Layouts.admin")
-@section("title","后台管理 | 书籍列表")
+@section("title","后台管理 |权限列表")
 @section("content")
 
 
     <div class="ibox float-e-margins">
         <div class="ibox-content">
             <div id="editable_wrapper" class="dataTables_wrapper form-inline">
-                <form action="{{url('/admin/books')}}" method="get">
-                    <div class="row">
-                        
-                        <div class="col-md-3">
-                            <div class="dataTables_length" id="editable_length">
-                                <label>
-                                    每页显示
-                                    <select name="pages" aria-controls="editable" class="form-control ">
-                                        <option value="5"
-                                                @if($num==5)
-                                                selected="selected"
-                                                @endif>
-                                            5
-                                        </option>
-                                        <option value="10"    @if($num==10)
-                                        selected="selected"
-                                                @endif>
-                                            10
-                                        </option>
-                                        <option value="15"@if($num==15)
-                                        selected="selected"
-                                                @endif>
-                                            15
-                                        </option>
-                                        <option value="20"@if($num==20)
-                                        selected="selected"
-                                                @endif>
-                                            20
-                                        </option>
-                                    </select>
 
-                                 </label>
-                            </div>
-                        </div>
+
                         <div class="col-sm-2">
                             <a href="{{url('admin/permission/create')}}" class="btn btn-info btn-sm" style="font-size:16px;">添加权限</a>
                         </div>
-                        <div class="col-sm-6">
-                            <div id="editable_filter" class="dataTables_filter">
-                                <label>
-                                    搜索：<input type="search" class="form-control input-sm" name="permission_name" value="{{ !empty($_GET['permission_name']) ? $_GET['permission_name'] : '' }}" placeholder="输入用户组名称">
-
-                                </label>
-                                <!-- <input type="submit" value="提交"> -->
-                                <!-- <div class="col-md-">   -->
-                                <input type="submit" class="btn btn-primary btn-sm" value="查询">
-
-                                <!-- </div> -->
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </form>
-
-
-
 
 
                 <table class="table table-striped table-bordered table-hover  dataTable"
@@ -83,7 +29,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        
+
                 @foreach($res as $k=>$v)
                     <tr class="gradeA odd" role="row">
 
@@ -103,6 +49,34 @@
                         <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->permission_id}}')">删除</a>
                        </td>
                     </tr>
+
+                    @if(isset($v['children']))
+
+
+
+                        @foreach($v['children'] as $kk=>$vv)
+                        <tr class="gradeA odd" role="row">
+
+                            <td class="sorting_1">{{$vv->permission_id}}</td>
+                            <td>|--|--{{$vv->permission_name}}</td>
+                            <td>{{$vv->permission_url}}</td>
+
+                            <td>{{$vv->permission_description}}</td>
+
+                            <td>{{date("Y-m-d H:i:s",$vv->permission_ctime)}}</td>
+                            {{--<td>{{$v->permission_status}}</td>--}}
+
+
+                            <td>
+                                <a href="/admin/permission/{{$v->permission_id}}/edit" class="btn btn-success btn-sm">修改</a>
+
+                                <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->permission_id}}')">删除</a>
+                            </td>
+                        </tr>
+
+
+                    @endforeach
+                    @endif
                 @endforeach
 
  
@@ -111,7 +85,7 @@
                     </tbody>
                 </table>
                 <div>
-                     {!! $res->appends(['permission_name'=>$input,'pages'=>$num])->render()!!}
+{{--                     {!! $res->appends(['permission_name'=>$input,'pages'=>$num])->render()!!}--}}
                 </div>
             </div>
         </div>

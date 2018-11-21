@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 });
 
+
+
 Route::get('admin/nopermission',function (){
 
     return view('welcome');
@@ -32,9 +34,9 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 //后台验证码显示
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 // 'middleware'=>'login',
-//Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
-//
+Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
+//Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+
 
 	// 后台用户管理
 	Route::resource('/user','UserController');
@@ -56,7 +58,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/user/auth/{id}','UserController@auth');
 //    提交授权页面
     Route::post('/user/doauth','UserController@doauth');
-//权限
+//    权限
     Route::resource('/permission','PermissionController');
 //    授权
     Route::get('/role/auth/{id}','RoleController@auth');

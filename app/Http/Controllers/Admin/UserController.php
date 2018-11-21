@@ -326,8 +326,11 @@ class UserController extends Controller
     $users = User::find($id);
 //  获取所有角色
     $roles = Role::get();
+
 //  获取用户已经拥有的权限
     $own_roles= DB::table('user_role')->where('user_id','=',$id)->lists('role_id');
+
+
 
        return view('admin/user/auth',compact('users','roles','own_roles'));
 

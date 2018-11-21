@@ -25,16 +25,37 @@
         <form method="post" class="form-horizontal" action="{{url('admin/permission')}}">
             {{csrf_field()}}
 
+            <div class="form-group"><label class="col-sm-2 control-label">权限分类:</label>
+
+                <div class="col-md-3">
+                    <div class="dataTables_length" id="editable_length">
+                        <label>
 
 
+                            <select name="pid" aria-controls="editable" class="form-control ">
+                                <option value="0" selected="selected">--请选择栏目--
 
 
+                                </option>
+                                <?foreach($res as $k => $v):?>
 
+                                       <option value="{{$v->permission_id}}">{{$v->permission_name}}</option>
+                                @if(isset($v['children']))
 
+                                <?foreach($v['children'] as $kk=>$vv):?>
+                                           <option value="{{$vv->permission_id}}">&nbsp;&nbsp;&nbsp;&nbsp;|--{{$vv->permission_name}}</option>
 
+                                         <?endforeach;?>
+                                @endif
+                                <?php endforeach;?>
 
+                            </select>
 
-
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
             <div class="form-group"><label class="col-sm-2 control-label">权限名称:</label>
 
                 <div class="col-sm-3"><input type="text" class="form-control" name="permission_name"></div>
