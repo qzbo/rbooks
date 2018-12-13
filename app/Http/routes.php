@@ -3,7 +3,7 @@
 /*
 |--------------------------------------------------------------------------
 | Application Routes
-|--------------------------------------------------------------------------
+|------------- -------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('admin/nopermission',function (){
 
-    return view('welcome');
+    return view('admin/admin');
 });
 
 //后台登录页
@@ -34,9 +34,9 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 //后台验证码显示
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 // 'middleware'=>'login',
-Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
-//Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
-
+//Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+//
 
 	// 后台用户管理
 	Route::resource('/user','UserController');
@@ -103,8 +103,20 @@ Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'
 });
 
 //前台测试接口展示 
-Route::get('home/index','Home\IndexController@index');
+//Route::get('api/index','Wechat\IndexController@index');
 
 Route::any('/wechat', 'Wechat\WechatController@serve');
 
+//图书API
+Route::group(['prefix'=>'api','namespace'=>'Home'],function(){
+//获取所有图书
+Route::get('/books','ApiBooksController@apibook');
+//获取某一个图书下的章节和内容
+Route::get('/chapters/{id}','ApiBooksController@apicatalog');
+//获取每一章节下的内容
+Route::get('/concen/{id}','ApiBooksController@apiconcen');
+//获取广告
+Route::get('/adv/{type}','ApiBooksController@apiadv');
 
+
+});

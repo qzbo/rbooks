@@ -11,7 +11,12 @@ class WechatConrtoller extends Controller
 {
     //
 
+    public function index(){
 
+
+
+        return 11;
+    }
 
 
 

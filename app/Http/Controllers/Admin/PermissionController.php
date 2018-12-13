@@ -163,10 +163,10 @@ class PermissionController extends Controller
     {
         //
         //接收要修改的记录的内容和id
-        $data = $request->input('permission_name');
-        $data = $request->input('permission_url');
-        $data = $request->input('permission_description');
-
+//        $data = $request->input('permission_name');
+//        $data = $request->input('permission_url');
+//        $data = $request->input('permission_description');
+//
 
 
         $data = $request->except('_token','_method');
@@ -220,7 +220,6 @@ class PermissionController extends Controller
 
             return back()->with('errors','修改失败');
         }
-
 
 
 
