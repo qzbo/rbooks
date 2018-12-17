@@ -20,12 +20,23 @@ class ApiBooksController extends Controller
 
         $res = Books::get();
 
-        return json_encode($res);
+         return $this->jy($res);
 
 
 
     }
+    //获取当前图书下的所有目录
+    public function apimulu(Request $request){
 
+        $id = $request->id;
+
+        $res = Chapters::where('book_id',$id)->get(['id','book_id','Chapter']);
+
+
+        return $this->jy($res);
+
+
+    }
 //    获取图书下的章节和内容
     public function apicatalog(Request $request,$id){
 
@@ -35,7 +46,7 @@ class ApiBooksController extends Controller
 
 
 
-        return json_encode($res);
+        return $this->jy($res);
 
     }
 //获取章节下的内容
@@ -44,11 +55,12 @@ class ApiBooksController extends Controller
 
         $res = Chapters::find($id);
 
-        return json_encode($res);
+        return $this->jy($res);
 
     }
 //获取广告
     public function apiadv(Request $request){
+//        接受type类型的值
         $type = $request->type;
 
 
@@ -56,11 +68,48 @@ class ApiBooksController extends Controller
          $res = Adv::where('isvi',$type)->get();
 
 
-          return json_encode($res);
+        return $this->jy($res);
 
     }
+//获取推荐书籍
+
+    public function apirecommend(Request $request) {
+
+        //获取推荐字段为1的图书
+        $res = Books::where('isrecommend','1')->get();
+
+        return $this->jy($res);
 
 
+
+    }
+//转换数据为json格式
+    public  function jy($res){
+
+
+        if($res){
+
+            $data=[
+                'status'=>0,
+                'msg'=>'获取成功',
+                'data'=>$res
+            ];
+
+            return json_encode($data);
+        }else {
+            $data=[
+                'status'=>1,
+                'msg'=>'获取数据失败',
+                'data'=>''
+            ];
+
+            return json_encode($data);
+
+        }
+
+
+
+    }
 
 
 }

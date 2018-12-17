@@ -111,10 +111,15 @@ Route::any('/wechat', 'Wechat\WechatController@serve');
 Route::group(['prefix'=>'api','namespace'=>'Home'],function(){
 //获取所有图书
 Route::get('/books','ApiBooksController@apibook');
+//获取推荐书籍
+Route::get('/recommend','ApiBooksController@apirecommend');
 //获取某一个图书下的章节和内容
 Route::get('/chapters/{id}','ApiBooksController@apicatalog');
+//获取某一本书下的章节下
+Route::get('/apimulu/{id}','ApiBooksController@apimulu');
 //获取每一章节下的内容
 Route::get('/concen/{id}','ApiBooksController@apiconcen');
+
 //获取广告
 Route::get('/adv/{type}','ApiBooksController@apiadv');
 

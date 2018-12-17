@@ -100,7 +100,7 @@
                         <td class="center">
                           
                                 
-                        <img style="width: 120px;height: 150px" src="http://182.61.25.211:8080/manager_epub/Images/{{$v->bimg}}"></td>
+                        <img style="width: 120px;height: 150px" src="http://118.24.4.22:8080/manager_epub/Images/{{$v->bimg}}"></td>
                         
                          <td>{{$v->author}}</td>
                          <td>{{$v->publishing}}</td>

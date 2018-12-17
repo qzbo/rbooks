@@ -32,9 +32,9 @@
 
             <div class="form-group"><label class="col-sm-2 control-label">封面图片:</label>
 
-                <div class="col-sm-3"><input type="file" name="bimg" disabled="disabled" class="form-control"  value="{{$books->bimg}}">
+                <div class="col-sm-3"><input type="file" name="bimg"  disabled="disabled" class="form-control"  value="{{$books->bimg}}">
                     <div style="width: 120px;height: 150px">
-                        <img src="http://182.61.25.211:8080/manager_epub/Images/{{$books->bimg}}" style="width: 120px;height: 150px">
+                        <img  src="http://118.24.4.22:8080/manager_epub/Images/{{$books->bimg}}" style="width: 120px;height: 150px">
                     </div>
 
                 </div>

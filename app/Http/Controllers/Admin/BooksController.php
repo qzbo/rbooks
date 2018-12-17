@@ -107,7 +107,7 @@ class BooksController extends Controller
       //接收传来的数据并修改
 
         //接收表单数据
-        $input = $request->except('_token','bimg','_method');
+        $input = $request->except('_token','_method');
 
         $rule=[
             'booksname'=>'required',
@@ -128,17 +128,36 @@ class BooksController extends Controller
         }
 
 
-
         $books = Books::find($id);
 
         $books -> booksname = $input['booksname'];
         $books -> author = $input['author'];
 
         //检查是否上传了新图片,未上传的话不执行图片修改
-        if ($request -> hasFile('bimg')) {
-            //    
-            $books -> bimg = $input['bimg'];
+        if (!$request -> hasFile('bimg')) {
+            //
+            $books -> bimg =  $books -> bimg;
             
+        }else{
+
+            $file = $input['bimg'];
+
+            $entension = $file->getClientOriginalExtension();//上传文件的后缀名
+            // dd($entension);
+
+            if ($entension != 'jpeg' && $entension != 'jpg' && $entension != 'png') {
+                # code...
+                return back()->with('errors', '请输入jpeg|jpg|png格式的图片')->withInput();
+
+            }
+            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+            $time = date('Ymd',time());
+            //本地服务器保存图片
+//            $path = $file->move(public_path().'/uploads/images'."/$time/",$newName);
+            $path = $file->move('http://118.24.4.22:8080/manager_epub/Images/',$newName);
+            $books-> bimg = $newName;
+//            $adv-> bimg = '/uploads/images'."/$time/".$newName;
+
         }
 
         $books -> publishing = $input['publishing'];
