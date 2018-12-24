@@ -10,15 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    
-    // echo phpinfo();die;
-
-
-    return view('welcome');
-
-
-});
+//Route::get('/', function () {
+//
+//    // echo phpinfo();die;
+//
+//
+//    return view('welcome');
+//
+//
+//});
 
 
 
@@ -104,24 +104,34 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
 //前台测试接口展示 
 //Route::get('api/index','Wechat\IndexController@index');
+//
+//Route::any('/wechat', 'Wechat\WechatController@serve');
+//
+////图书API
+Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
+////获取所有图书
+////Route::get('/books','ApiBooksController@apibook');
+//
+////获取推荐书籍
+//Route::get('/recommend','ApiBooksController@apirecommend');
+////获取某一个图书下的章节和内容
+//Route::get('/chapters/{id}','ApiBooksController@apicatalog');
+////获取某一本书下的章节下
+//Route::get('/apimulu/{id}','ApiBooksController@apimulu');
+////获取每一章节下的内容
+//Route::get('/concen/{id}','ApiBooksController@apiconcen');
+//
+////获取广告
+//Route::get('/adv/{type}','ApiBooksController@apiadv');
 
-Route::any('/wechat', 'Wechat\WechatController@serve');
 
-//图书API
-Route::group(['prefix'=>'api','namespace'=>'Home'],function(){
-//获取所有图书
-Route::get('/books','ApiBooksController@apibook');
-//获取推荐书籍
-Route::get('/recommend','ApiBooksController@apirecommend');
-//获取某一个图书下的章节和内容
-Route::get('/chapters/{id}','ApiBooksController@apicatalog');
-//获取某一本书下的章节下
-Route::get('/apimulu/{id}','ApiBooksController@apimulu');
-//获取每一章节下的内容
-Route::get('/concen/{id}','ApiBooksController@apiconcen');
 
-//获取广告
-Route::get('/adv/{type}','ApiBooksController@apiadv');
+    Route::get('/books/{id?}','IndexController@listbooks');
 
+    Route::get('/books/chapters/{id?}','IndexController@mainbooks');
 
 });
+
+Route::get('/', 'Home\IndexController@index');
+
+

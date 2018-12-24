@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Home;
+
+use App\Model\Books;
+use App\Model\Chapters;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class IndexController extends Controller
+{
+    //
+    public function index(){
+
+        $res = Books::get();
+
+
+
+        return view('home/books/index',compact('res'));
+
+    }
+
+    public function listbooks(Request $request){
+
+        $book_id = $request->id;
+        $books_res = Books::find($book_id);
+
+        $books_chapters = Chapters::where('book_id',$book_id)->get(['id','book_id','Chapter']);
+//
+//foreach ($books_chapters as $k => $c){
+//
+//    echo $c->Chapter;
+//}
+//dd;
+        return view('home/books/detail',compact('books_res','books_chapters'));
+
+    }
+
+    public function mainbooks(Request $request){
+
+        $chapters_id = $request->id;
+
+
+        $chapters_res = Chapters::find($chapters_id);
+
+
+        $res = Books::find($chapters_res->book_id);
+
+
+        return view('home/books/main',compact('chapters_res','res'));
+
+
+    }
+
+
+
+
+
+}
