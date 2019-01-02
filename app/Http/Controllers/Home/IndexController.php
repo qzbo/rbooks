@@ -53,9 +53,30 @@ class IndexController extends Controller
 
 
     }
+    public function rec(){
+        $rec = Books::where('isrecommend',1)->get();
+
+
+
+        return view('home/books/recommend',compact('rec'));
+
+
+
+    }
+
+    public function sea(){
+
+
+        return view('home/books/search');
+    }
+
+    public function search(Request $request){
+
+        $booksname = $request->bookname;
 
 
 
 
+    }
 
 }

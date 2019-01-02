@@ -7,7 +7,7 @@
     <title>读览</title>
     <link rel="stylesheet" href="{{asset('/home/css/base.css')}}">
     <link rel="stylesheet" href="{{asset('/home/css/read.css')}}">
-</head>stylesheet
+</head>
 <body class="day-bg">
 
 

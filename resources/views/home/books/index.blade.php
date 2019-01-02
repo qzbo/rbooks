@@ -19,7 +19,7 @@
 <!--  -->
 <div class="main">
     <div class="search">
-        <a href="search.html" class="search_info">
+        <a href="/home/book/sea" class="search_info">
             <img src="{{asset('/home/images/icon_search.png')}}" class="icon_search">
             <span class="input"> 原创搜索 </span>
         </a>
@@ -28,10 +28,24 @@
     <!-- Swiper -->
     <div class="swiper-container recommend">
         <div class="swiper-wrapper">
+            <div class="swiper-slide">
+
+                <a href="/home/book/rec">
+                    <img height="100%" width="100%" src="{{asset('/home/images/tuijian.png')}}" alt="">
+                    <!-- week rcm -->
+                    <span class="rec_week">
+
+                            <em>每周推荐</em>
+
+                            <span>2018年8月8日</span>
+                    </span>
+                </a>
+
+            </div>
 
 
-            @foreach($res as $k=>$v)
-               @if($v->isrecommend == 0)
+        @foreach($res as $k=>$v)
+
                 <div class="swiper-slide">
                     <a href="/home/books/{{$v->id}}">
                         <img src="http://118.24.4.22:8080/manager_epub/Images/{{$v->bimg}}">
@@ -42,22 +56,6 @@
                         </span>
                     </a>
                 </div>
-
-                @else
-
-
-
-
-                <div class="swiper-slide">
-                    <a href="#">
-                        <!-- week rcm -->
-                        <span class="rec_week">
-                            <em>每周推荐</em>
-                            <span>2018年8月8日</span>
-                        </span>
-                    </a>
-                </div>
-                @endif
 
             @endforeach
             <div class="swiper-slide">

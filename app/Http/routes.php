@@ -130,6 +130,12 @@ Route::group(['prefix'=>'home','namespace'=>'Home'],function(){
 
     Route::get('/books/chapters/{id?}','IndexController@mainbooks');
 
+    Route::get('/book/rec','IndexController@rec');
+
+    Route::get('/book/sea','IndexController@sea');
+    Route::get('/book/search/{bookname?}','IndexController@search');
+
+
 });
 
 Route::get('/', 'Home\IndexController@index');

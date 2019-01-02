@@ -15,7 +15,7 @@
 <!-- 头部 -->
 <header class="header">
     <div class="back">
-        <a href="#"><img src="{{asset('/home/images/arrow_l.png')}}"></a>
+        <a href="javascript:history.go(-1)"><img src="{{asset('/home/images/arrow_l.png')}}"></a>
     </div>
     <div class="tit_wrap">
         <p class="title">{{$books_res->booksname}}</p>
@@ -32,7 +32,7 @@
         </div>
         <div class="info_r">
             <div class="book_name">
-                <h1>{{$books_res->booksname}}<small>原创</small></h1>
+                <h1><?php  echo mb_substr("$books_res->booksname",0,6,'utf-8'); ?> <small>原创</small></h1>
             </div>
             <div class="author">作者：{{$books_res->author}}</div>
             <div class="read_progress">阅读进度：0%</div>
