@@ -1,6 +1,7 @@
 "use strict";
 $(function() {
     var i=["item1","item2","item3","item4","item5"],s=["雪中悍刀行1","雪中悍刀行222","雪中悍刀行3","4","5"];
+
     function o(){$(".slider li").each(function(t,e){$(e).removeClass(),$(e).addClass(i[t])
     }),$("#bookName").text(s[1])
     }

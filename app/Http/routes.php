@@ -34,8 +34,8 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 //后台验证码显示
 Route::get('/code/captcha/{tmp}', 'Admin\LoginController@captcha');
 // 'middleware'=>'login',
-//Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+Route::group(['middleware'=>['login','hasRole'],'prefix'=>'admin','namespace'=>'Admin'],function(){
+//Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 //
 
 	// 后台用户管理

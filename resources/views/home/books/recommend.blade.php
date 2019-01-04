@@ -26,29 +26,29 @@
         <ul class="slider">
 
             <li class="item1">
-                <a href="#">111
-                    <img src="" alt="">
+                <a href="#">
+                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
                 </a>
             </li>
 
             <li class="item2">
-                <a href="#">222
-                    <img src="" alt="">
+                <a href="#">
+                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
                 </a>
             </li>
 
             <li class="item3">
-                <a href="#">333
-                    <img src="" alt="">
+                <a href="#">
+                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
                 </a>
             </li>
             <li class="item4">
-                <a href="#">444
+                <a href="#">
                     <img src="" alt="">
                 </a>
             </li>
             <li class="item5">
-                <a href="#">555
+                <a href="#">
                     <img src="" alt="">
                 </a>
             </li>
@@ -77,6 +77,30 @@
 
 <script src="{{asset('/home/lib/jquery.min.js')}}"></script>
 <script src="{{asset('/home/js/weekrecommend.js')}}"></script>
+<script>
+    $(document).ready(function(){
+
+    var a =$('ul li').attr('class');
+    var arr = $.makeArray(a);
+
+        alert(arr);
+    });
+</script>
+<script type="text/javascript">
+
+
+//    $(document).ready(function(){
+//
+//        // var tagLi = $("li p");
+//        // var arr = $.makeArray(tagLi);
+//        // for(var i=0;i<arr.length;i++){
+//        //     alert(arr[i].innerHTML);
+//        // }
+//
+//
+//    });
+</script>
+
 
 </body>
 </html>

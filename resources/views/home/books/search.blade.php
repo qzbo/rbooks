@@ -14,7 +14,9 @@
 <!-- 头部 -->
 <header class="header">
     <div class="back">
-        <a href="javascript:history.go(-1)"><img src="{{asset('/home/images/arrow_l.png')}}"></a>
+        <a href="javascript:history.go(-1)">
+            <img src="{{asset('/home/images/arrow_l.png')}}">
+        </a>
     </div>
     <div class="nav_bar">读览</div>
 </header>

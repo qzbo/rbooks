@@ -28,12 +28,7 @@ class IndexController extends Controller
         $books_res = Books::find($book_id);
 
         $books_chapters = Chapters::where('book_id',$book_id)->get(['id','book_id','Chapter']);
-//
-//foreach ($books_chapters as $k => $c){
-//
-//    echo $c->Chapter;
-//}
-//dd;
+
         return view('home/books/detail',compact('books_res','books_chapters'));
 
     }
@@ -41,11 +36,7 @@ class IndexController extends Controller
     public function mainbooks(Request $request){
 
         $chapters_id = $request->id;
-
-
         $chapters_res = Chapters::find($chapters_id);
-
-
         $res = Books::find($chapters_res->book_id);
 
 
