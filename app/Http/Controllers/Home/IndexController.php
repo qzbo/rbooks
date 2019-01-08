@@ -49,8 +49,14 @@ class IndexController extends Controller
 
 
 
-        return view('home/books/recommend',compact('rec'));
+        foreach ($rec as $k=>$v){
 
+
+            $arrname []= $v['booksname'];
+        }
+       $name = json_encode($arrname);
+
+        return view('home/books/recommend',compact('rec','name'));
 
 
     }

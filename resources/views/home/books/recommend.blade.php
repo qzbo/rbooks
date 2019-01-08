@@ -24,36 +24,21 @@
     <!-- 旋转木马 -->
     <div id="xzmm" class="wrap">
         <ul class="slider">
+@foreach($rec as $k=>$v)
 
-            <li class="item1">
-                <a href="#">
-                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
-                </a>
-            </li>
+            <li class="item{{$k+1}}">
+                <input type="text" hidden  id="id" value="{{$v->id}}">
 
-            <li class="item2">
-                <a href="#">
-                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
-                </a>
-            </li>
-
-            <li class="item3">
-                <a href="#">
-                    <img src="{{asset('/home/images/arrow_l.png')}}" alt="">
-                </a>
-            </li>
-            <li class="item4">
-                <a href="#">
+                <a href="/home/books/{{$v->id}}">
                     <img src="" alt="">
                 </a>
             </li>
-            <li class="item5">
-                <a href="#">
-                    <img src="" alt="">
-                </a>
-            </li>
+@endforeach
+
+
         </ul>
     </div>
+    <input type="text" hidden  id="name" value="{{$name}}">
 
     <!-- -->
     <div class="book_info">
@@ -74,31 +59,10 @@
 </div>
 
 
-
 <script src="{{asset('/home/lib/jquery.min.js')}}"></script>
 <script src="{{asset('/home/js/weekrecommend.js')}}"></script>
 <script>
-    $(document).ready(function(){
 
-    var a =$('ul li').attr('class');
-    var arr = $.makeArray(a);
-
-        alert(arr);
-    });
-</script>
-<script type="text/javascript">
-
-
-//    $(document).ready(function(){
-//
-//        // var tagLi = $("li p");
-//        // var arr = $.makeArray(tagLi);
-//        // for(var i=0;i<arr.length;i++){
-//        //     alert(arr[i].innerHTML);
-//        // }
-//
-//
-//    });
 </script>
 
 
