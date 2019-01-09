@@ -66,11 +66,10 @@
                             <td>{{date("Y-m-d H:i:s",$vv->permission_ctime)}}</td>
                             {{--<td>{{$v->permission_status}}</td>--}}
 
-
                             <td>
-                                <a href="/admin/permission/{{$v->permission_id}}/edit" class="btn btn-success btn-sm">修改</a>
+                                <a href="/admin/permission/{{$vv->permission_id}}/edit" class="btn btn-success btn-sm">修改</a>
 
-                                <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$v->permission_id}}')">删除</a>
+                                <a href="javascript:;" class="btn btn-danger btn-sm" onclick="delrole('{{$vv->permission_id}}')">删除</a>
                             </td>
                         </tr>
 
