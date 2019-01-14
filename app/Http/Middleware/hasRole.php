@@ -42,7 +42,7 @@ class hasRole
         }
         $newarr = array_unique($arr);
 //    dd($newarr);
-//        dd($rout  e);
+//        dd($route);
 
         if(in_array($route,$newarr)){
                 return $next($request);

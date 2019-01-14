@@ -145,8 +145,12 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
+
+        $arr = Permission::get()->toArray();
+
+    dd(array_column($arr,'pid'));
         //
-    $res = Permission::where('permission_id',$id)->first();
+       $res = Permission::where('permission_id',$id)->first();
 
 
         return view('admin/permission/edit',compact('res'));
@@ -239,7 +243,43 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $arr = Permission::get()->toArray();
+
+        $arra = array_column($arr,'pid');
+
+
+        $perss = Permission::find($id);
+
+        if ( in_array($id,$arra))
+        {
+            $data=[
+            'status'=>1,
+            'msg'=>'有子属性不能删除'
+        ];
+            return  $data;
+
+        }else{
+
+            //执行删除操作
+            $res = $perss->delete();
+            //根据返回的结果处理成功和失败
+            if($res){
+                $data=[
+                    'status'=>0,
+                    'msg'=>'删除成功'
+                ];
+            }else{
+                $data=[
+                    'status'=>1,
+                    'msg'=>'删除失败'
+                ];
+            }
+
+            return  $data;
+
+        }
+
     }
 
 

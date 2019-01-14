@@ -96,7 +96,7 @@
 
 
                 //询问框
-                layer.confirm('确认删除这个用户组吗？', {
+                layer.confirm('确认删除这个权限吗？', {
                     btn: ['确认','取消']
                 }, function(){
 //                通过ajax 向服务器发送一个删除请求
