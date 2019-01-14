@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fb14033-0f23-4600-af82-ff70f651b9db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/hasRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/hasRole.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/permission/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/permission/index.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="5fb14033-0f23-4600-af82-ff70f651b9db" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,8 +169,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="252" lean-forward="true" selection-start-line="252" selection-end-line="252" />
+            <state relative-caret-position="73">
+              <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
             </state>
           </provider>
         </entry>
@@ -579,18 +574,18 @@
       <workItem from="1546828518757" duration="3784000" />
       <workItem from="1546915633736" duration="11828000" />
       <workItem from="1547003181397" duration="7670000" />
-      <workItem from="1547435132364" duration="7013000" />
+      <workItem from="1547435132364" duration="8060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230749000" />
+    <option name="totallyTimeSpent" value="231796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="285" y="124" width="1420" height="849" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.74900925" visible="true" weight="0.30624092" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.74900925" visible="true" weight="0.30624092" />
       <window_info id="Structure" order="1" sideWeight="0.25099075" side_tool="true" weight="0.32365748" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -975,8 +970,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="252" lean-forward="true" selection-start-line="252" selection-end-line="252" />
+        <state relative-caret-position="73">
+          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
         </state>
       </provider>
     </entry>
